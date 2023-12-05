@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="./style.css">
+ </head>
+ <body>
+    <h1 id="title">Survey Form</h1>
+    <form id="survey-form">
+        <div>
+          <label for="firstname-label">First Name</label>
+          <input type="text" id="firstname-label" placeholder="Enter your first name" required>
+        </div>
+        <div>
+          <label for="lastname-label">Last Name</label>
+          <input type="text" id="lastname-label" placeholder="Enter your last name" required>
+        </div>
+        <div>
+          <label for="email-label">Email</label>
+          <input type="email" id="email-label" placeholder="Enter your email" required>
+        </div>
+        <div>
+          <label for="age-label">Age</label>
+          <input type="number" id="age-label" min="10" max="58" placeholder="Enter your Age" required>
+        </div>
+        <div>
+          <label for="mobile-label">Mobile Number</label>
+          <input type="text" id="mobile-label" name="country_code" title="Error Message" pattern="[1-9]{1}[0-9]{9}" required>
+        </div>
+        <div>
+          <label for="country-label">Country</label>
+          <div>
+            <select name="country" id="country-label" required>
+              <option value="India">India</option>
+              <option value="usa">USA</option>
+              <option value="UK">UK</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="gender-label">Gender</label>
+          <div>
+            <input type="radio" id="male" name="gender" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" required>
+            <label for="female">Female</label>
+          </div>
+        </div>
+        <div>
+          <label for="profession-label">What is your profession</label>
+          <input type="text" id="profession-label" name="profession" required>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+      
+      <div id="popup" style="display: none;">
+        <h2>Your Form Data:</h2>
+        <p id="popup-content"></p>
+      </div>
+      
+      <script>
+        document.getElementById("survey-form").addEventListener("submit", function(event) {
+          event.preventDefault();
+        
+          var firstName = document.getElementById("firstname-label").value;
+          var lastName = document.getElementById("lastname-label").value;
+          var email = document.getElementById("email-label").value;
+          var age = document.getElementById("age-label").value;
+          var mobileNumber = document.getElementById("mobile-label").value;
+          var country = document.getElementById("country-label").value;
+          var gender = document.querySelector('input[name="gender"]:checked').value;
+          var profession = document.getElementById("profession-label").value;
+      
+          var popupContent = "First Name: " + firstName + "<br>";
+          popupContent += "Last Name: " + lastName + "<br>";
+          popupContent += "Email: " + email + "<br>";
+          popupContent += "Age: " + age + "<br>";
+          popupContent += "Mobile Number: " + mobileNumber + "<br>";
+          popupContent += "Country: " + country + "<br>";
+          popupContent += "Gender: " + gender + "<br>";
+          popupContent += "Profession: " + profession + "<br>";
+      
+          document.getElementById("popup-content").innerHTML = popupContent;
+          document.getElementById("popup").style.display = "block";
+      
+          this.reset();
+        });
+      
+        document.querySelector("button[type='reset']").addEventListener("click", function() {
+          document.getElementById("popup").style.display = "none";
+        });
+      </script>      
+ </body>
+ </html>
